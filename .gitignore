@@ -1,0 +1,13 @@
+Library/
+Pictures/
+.Trash/
+Downloads/
+Movies/
+Music/
+Public/
+.DS_Store
+.gitconfig
+.zsh_history
+.vscode/
+.Documents/
+.gitignore/
