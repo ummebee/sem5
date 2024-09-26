@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-UMME - Customization</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-size: small;
+        }
+        /* General Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #111;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 1.8em;
+        }
+
+        /* Cart Icon Styles */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-icon span {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 0.8em;
+        }
+
+        /* Subheader */
+        .subheader {
+            background-color: #ffce00;
+            text-align: center;
+            padding: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .subheader h2 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        /* Customization Section */
+        .customization {
+            padding: 40px;
+            background-color: #fff;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+
+        .customization h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .customization h4 {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+
+        .customization select, .customization input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart {
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Button Styles */
+        .btn-warning {
+            font-size: 1.2em; /* Larger font size */
+            padding: 12px 24px;
+        }
+
+        /* Cart Modal Styles */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            padding: 20px;
+        }
+
+        .cart-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            font-size: 1.2em;
+        }
+
+        .close-btn {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .uploaded-image {
+            max-width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="header-title">AL-UMME</h1>
+            <div class="cart-icon" onclick="toggleCart()">
+                <img src="cart-icon.png" alt="Cart" width="30" height="30">
+                <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="subheader">
+        <h2>Make It Yours</h2>
+    </div>
+
+    <div class="container customization">
+        <h3>Customization Options</h3>
+        <p>Personalize your clothing with our customization features.</p>
+        
+        <div class="fabric-selection">
+            <h4>Fabric Selection:</h4>
+            <select id="fabric" class="custom-select">
+                <option value="" disabled selected>Select Fabric</option>
+                <option value="Cotton">Cotton</option>
+                <option value="Silk">Silk</option>
+                <option value="Linen">Linen</option>
+            </select>
+        </div>
+
+        <div class="color-palette">
+            <h4>Color Palette:</h4>
+            <select id="color" class="custom-select">
+                <option value="" disabled selected>Select Color</option>
+                <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+                <option value="Green">Green</option>
+            </select>
+        </div>
+
+        <div class="embroidery-designs">
+            <h4>Embroidery Designs:</h4>
+            <select id="embroidery" class="custom-select">
+                <option value="" disabled selected>Select Design</option>
+                <option value="Floral">Floral</option>
+                <option value="Geometric">Geometric</option>
+                <option value="Abstract">Abstract</option>
+            </select>
+        </div>
+
+        <div class="size-selection">
+            <h4>Size:</h4>
+            <select id="size" class="custom-select">
+                <option value="" disabled selected>Select Size</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+            </select>
+        </div>
+
+        <div class="pattern-selection">
+            <h4>Pattern:</h4>
+            <select id="pattern" class="custom-select">
+                <option value="" disabled selected>Select Pattern</option>
+                <option value="Striped">Striped</option>
+                <option value="Polka Dots">Polka Dots</option>
+                <option value="Solid">Solid</option>
+            </select>
+        </div>
+
+        <div class="monogramming">
+            <h4>Monogramming:</h4>
+            <input type="text" id="monogram" placeholder="Enter initials" class="form-control">
+        </div>
+
+        <div class="image-upload">
+            <h4>Upload Image Reference:</h4>
+            <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)">
+            <img id="preview" class="uploaded-image" src="#" alt="Image Preview" style="display:none;">
+        </div>
+
+        <button class="btn btn-warning add-to-cart" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <span>Your Cart</span>
+                <button class="close-btn" onclick="toggleCart()">Close</button>
+            </div>
+            <div id="cart-items"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AL-UMME. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+        const cartItems = [];
+
+        function addToCart() {
+            const fabric = document.getElementById('fabric').value;
+            const color = document.getElementById('color').value;
+            const embroidery = document.getElementById('embroidery').value;
+            const size = document.getElementById('size').value;
+            const pattern = document.getElementById('pattern').value;
+            const monogram = document.getElementById('monogram').value;
+
+            if (fabric && color && embroidery && size && pattern) {
+                let customizationDetails = `Fabric: ${fabric}, Color: ${color}, Embroidery: ${embroidery}, Size: ${size}, Pattern: ${pattern}`;
+                if (monogram) {
+                    customizationDetails += `, Monogram: ${monogram}`;
+                }
+                
+                // Handle image reference
+                const imageReference = document.getElementById('preview').src || "No image uploaded";
+
+                cartItems.push({
+                    details: customizationDetails,
+                    image: imageReference
+                });
+
+                alert(`Added to Cart: ${customizationDetails}`);
+                
+                // Increment cart count and update display
+                cartCount++;
+                document.getElementById('cart-count').textContent = cartCount;
+
+                // Clear inputs
+                clearInputs();
+
+                // Here you would normally send this data to your server or update the cart state
+            } else {
+                alert("Please select all customization options before adding to cart.");
+            }
+        }
+
+        function clearInputs() {
+            document.getElementById('fabric').selectedIndex = 0;
+            document.getElementById('color').selectedIndex = 0;
+            document.getElementById('embroidery').selectedIndex = 0;
+            document.getElementById('size').selectedIndex = 0;
+            document.getElementById('pattern').selectedIndex = 0;
+            document.getElementById('monogram').value = '';
+            document.getElementById('preview').style.display = 'none';
+            document.getElementById('imageUpload').value = '';
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('preview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            cartModal.style.display = cartModal.style.display === "block" ? "none" : "block";
+            if (cartModal.style.display === "block") {
+                displayCartItems();
+            }
+        }
+
+        function displayCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = ''; // Clear previous items
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.classList.add('cart-item');
+                itemElement.innerHTML = `<span>${item.details}</span>`;
+                if (item.image !== "No image uploaded") {
+                    itemElement.innerHTML += `<img src="${item.image}" width="50" height="50" alt="Image Reference">`;
+                }
+                cartItemsContainer.appendChild(itemElement);
+            });
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

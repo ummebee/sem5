@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-UMME - Luxury Embroidery Clothing</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin-right: 0%;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        header {
+            background-color: #111;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+           
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 2.5em;
+            letter-spacing: 1.5px;
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+        }
+        .header-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .header-icons a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            animation: slideIn 1s ease-out;
+            position: relative;
+        }
+        nav a {
+            padding: 14px;
+            display: block;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+        }
+       /* nav a:hover {
+            background-color: #ffce00;
+            color: black;
+        }*/
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            z-index: 1;
+        }
+       /* a:hover {
+  color: #00698f;
+  text-decoration: underline;
+}*/
+        .dropdown-content a {
+            color: black;
+            padding: 12px;
+            text-decoration: none;
+            display: block;
+        }
+       .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .hero {
+    position: relative;
+    height: 100vh;
+    margin: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 50vh;
+    }
+    .hero h1 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        height: 30vh;
+    }
+    .hero h1 {
+        font-size: 1.5em;
+    }
+}
+        .hero h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+  .hero {
+    height: 50vh;
+    background-position: center;
+  }
+  .hero h1 {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 30vh;
+    background-position: center;
+  }
+  .hero h1 {
+    font-size: 1.5em;
+  }
+}
+        .hero .cta-button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ffce00;
+            color: black;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            z-index: 2;
+        }
+        .cta-button:hover {
+            background-color: #ffc700;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .product-card {
+  background-color: white;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  transition: transform 0.3s ease;
+  /* Add animation and alignment styles */
+  animation: fadeIn 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        @keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+        .product-card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .product-card h3 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            font-family: 'Playfair Display', serif;
+        }
+        .footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .social-icons {
+            margin: 10px 0;
+        }
+        .social-icons a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+        .video-section {
+            background-color: #f0f0f0;
+            padding: 30px;
+            text-align: center;
+        }
+        .video-section video {
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .about-us {
+            padding: 40px;
+            text-align: center;
+            background-color: #eee;
+        }
+        .contact-us {
+    padding: 40px;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+        .about-us img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+        .about-us h2 {
+            font-size: 2.5em;
+            font-family: 'Playfair Display', serif;
+            margin: 20px 0;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 960px) {
+            header {
+               
+                align-items: flex-start;
+            }
+            
+            header h1 {
+                font-size: 2em;
+                margin-bottom: 10px;
+            }
+            .header-icons{
+                box-sizing: 2.5em;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .cta-button {
+                font-size: 1em;
+            }
+            .product-card {
+                width: 90%;
+            }
+            .about-us h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header>
+        <h1>AL-UMME</h1>
+        <div class="header-icons">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            <a href="#"><i class="fas fa-user"></i></a>
+        </div>
+    </header>
+
+    <nav>
+        <div class="dropdown">
+            <a href="#">Women's Dresses</a>
+            <div class="dropdown-content">
+                <a href="#">Casual Dresses</a>
+                <a href="#">Formal Dresses</a>
+                <a href="#">Evening Gowns</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#">Abayas</a>
+            <div class="dropdown-content">
+                <a href="#">Classic Abayas</a>
+                <a href="#">Modern Abayas</a>
+                <a href="#">Embroidered Abayas</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#">Accessories</a>
+            <div class="dropdown-content">
+                <a href="#">Handbags</a>
+                <a href="#">Jewelry</a>
+                <a href="#">Scarves</a>
+            </div>
+        </div>
+        <a href="#">Customization</a>
+        <a href="#">Virtual Try-On</a>
+    </nav>
+
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop>
+            <source src="backgroundvideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <h1>Empowering Women, One Outfit at a Time</h1>
+        <button class="cta-button">Explore Our Collection</button>
+    </section>
+
+    <section class="content">
+        <h2>Featured Products</h2>
+        <div class="products">
+            <div class="product-card">
+                <img src="luxurydress.jpeg" alt="Luxury Dress">
+                <h3>Luxury Dress</h3>
+                <p>Elegant handcrafted embroidery with the finest materials.</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="designerabaya.jpeg" alt="Designer Abaya">
+                <h3>Designer Abaya</h3>
+                <p>Exquisite abayas with detailed craftsmanship.</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="acceriores.jpeg" alt="Embroidered Accessory">
+                <h3>Embroidered Accessory</h3>
+                <p>Luxury accessories with intricate embroidery designs.</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="dress2.jpg" alt="Elegant Evening Dress">
+                <h3>Elegant Evening Dress</h3>
+                <p>Perfect for formal occasions with stunning details.</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="abaya2.jpg" alt="Chic Abaya">
+                <h3>Chic Abaya</h3>
+                <p>Modern design with luxurious embroidery patterns.</p>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="accessory2.jpg" alt="Luxury Bag">
+                <h3>Luxury Bag</h3
+                    <p> accessory that complements any outfit.</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+            <button class="cta-button">View More</button>
+        </section>
+    
+        <section class="video-section">
+            <h2>Discover Our Story</h2>
+            <video controls>
+                <source src="WhatsApp Video 2024-09-12 at 01.57.40.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h2>AL-UMME Embroidery Craftsmanship</h2>
+            <video controls>
+                <source src="WhatsApp Video 2024-09-26 at 22.34.06.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+    
+        <section class="about-us">
+            <h2>About Us</h2>
+            <img src="founder.jpg" alt="Founder">
+            <p><b>AL-UMME</b> is a luxury brand dedicated to empowering women through exquisite hand-embroidered clothing and accessories. Each piece tells a story of elegance and craftsmanship.
+               <br> <b>Al-UMME </b>transforms your vision into exceptional fashion. Specializing in bespoke clothing, we deliver tailor-made pieces that reflect your unique style with unparalleled craftsmanship and premium materials. Elevate your wardrobe with custom creations designed just for you.
+
+            </p>
+            <button class="cta-button">Learn More About Us</button>
+        </section>
+
+        <section class="contact-us">
+            <h2>Contact Us</h2>
+            <p>Get in touch with us for any inquiries or feedback.</p>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message"></textarea><br><br>
+                <input type="submit" value="Send">
+            </form>
+            <p>Alternatively, you can reach us at:</p>
+            <p><i class="fas fa-phone"></i> +1 123 456 7890</p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:info@alumme.com">info@alumme.com</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Main St, Anytown, USA 12345</p>
+        </section>
+    
+        <footer class="footer">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2024 AL-UMME. All Rights Reserved.</p>
+        </footer>
+    
+       
+        <script>
+            let cartCount = 0;
+            const cartItems = [];
+    
+            // Sample JSON data for products
+            const products = [
+                {
+                    "name": "Luxury Dress",
+                    "image": "dress1.jpg",
+                    "description": "Elegant handcrafted embroidery with the finest materials."
+                },
+                {
+                    "name": "Designer Abaya",
+                    "image": "abaya1.jpg",
+                    "description": "Exquisite abayas with detailed craftsmanship."
+                },
+                {
+                    "name": "Handcrafted Accessory",
+                    "image": "accessory1.jpg",
+                    "description": "Hand-embroidered accessory that complements any outfit."
+                }
+                // Add more products as needed...
+            ];
+    
+            // Function to display products
+            function displayProducts() {
+                const productList = document.getElementById('product-list');
+                products.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <button onclick="addToCart('${product.name}', '${product.image}')">Add to Cart</button>
+                    `;
+                    productList.appendChild(productCard);
+                });
+            }
+    
+            function addToCart(productName, productImage) {
+                cartCount++;
+                document.getElementById('cart-count').textContent = cartCount;
+                cartItems.push({ name: productName, image: productImage });
+                alert("Item added to cart!");
+            }
+    
+            function toggleCart() {
+                const modal = document.getElementById('cart-modal');
+                modal.style.display = modal.style.display === "block" ? "none" : "block";
+                displayCartItems();
+            }
+    
+            function displayCartItems() {
+                const cartItemsContainer = document.getElementById('cart-items');
+                cartItemsContainer.innerHTML = ''; // Clear previous items
+                cartItems.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'cart-item';
+                    itemDiv.innerHTML = `<img src="${item.image}" alt="${item.name}"> <span>${item.name}</span>`;
+                    cartItemsContainer.appendChild(itemDiv);
+                });
+            }
+    
+            // Close the modal when clicking outside of it
+            window.onclick = function(event) {
+                const modal = document.getElementById('cart-modal');
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+    
+            // Initial call to display products
+            displayProducts();
+        </script>
+    </script>
+    </body>
+    </html>
+    
