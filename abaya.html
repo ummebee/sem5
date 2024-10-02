@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abayas - AL-UMME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            font-size: small;
+        }
+        /* General Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #111;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Subheader */
+        .subheader {
+            background-color: #ffce00;
+            text-align: center;
+            padding: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .subheader h2 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #333;
+        }
+
+        /* Filter and Sort Section */
+        .filter-sort {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .filter-sort select {
+            padding: 10px;
+            font-size: 1.2em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Two products per row */
+            gap: 40px;
+            justify-content: center;
+            padding: 40px;
+        }
+        .product-card {
+  background-color: white;
+  padding: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 50vh;
+  transition: transform 0.3s ease;
+  /* Add animation and alignment styles */
+  animation: fadeIn 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+       
+        .product-card:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+
+        .product-card img {
+  width: 50vh;
+  height: 60vh;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-card h3 {
+            font-size: 1.6em; /* Larger font size */
+            margin: 20px 0;
+        }
+
+        .product-card p {
+  padding: 10px;
+  font-size: 1.3em;
+  color: #888;
+}
+        /* Add to Cart Button */
+        .product-card button {
+            background-color: #111;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 1.2em; /* Increased font size */
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-card button:hover {
+            background-color: #ffce00;
+            color: #111;
+        }
+        /* Pagination Styles */
+        .pagination {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .pagination button {
+            background-color: #ffce00;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        /* Cart Modal Styles */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            padding: 20px;
+        }
+
+        .cart-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            font-size: 1.2em;
+        }
+
+        .close-btn {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Abayas - AL-UMME</h1>
+        <div>
+            <i class="fas fa-shopping-cart" onclick="toggleCart()"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <!-- Subheader -->
+    <section class="subheader">
+        <h2>Modest Elegance</h2>
+    </section>
+
+    <!-- Filter and Sort Section -->
+    <section class="filter-sort">
+        <select>
+            <option value="">Filter by Price</option>
+            <option value="low-to-high">Low to High</option>
+            <option value="high-to-low">High to Low</option>
+        </select>
+
+        <select id="filter-category" onchange="filterProducts()">
+            <option value="all">All Collections</option>
+            <option value="Casual">Casual</option>
+            <option value="Evening">Evening</option>
+            <option value="Party">Party</option>
+            <option value="Workwear">Workwear</option>
+        </select>
+        <select id="sort-arrival" onchange="sortProducts()">
+            <option value="default">Sort by Arrival</option>
+            <option value="newest">Newest Arrivals</option>
+            <option value="oldest">Oldest Arrivals</option>
+        </select>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="product-grid" id="product-grid">
+        <!-- Products will be dynamically injected here -->
+    </section>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <button id="prev-page" onclick="prevPage()">Previous</button>
+        <button id="next-page" onclick="nextPage()">Next</button>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <i class="fas fa-times" onclick="toggleCart()"></i>
+            </div>
+            <div id="cart-items">
+                <!-- Cart items will be injected here -->
+            </div>
+            <button class="close-btn" onclick="toggleCart()">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AL-UMME. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+        const cartItems = [];
+        let currentPage = 1;
+        const productsPerPage = 10;
+
+        // Sample products data for Abayas
+        const products = [
+            { "name": "Casual Abaya 1", "image": "casual_abaya1.jpg", "price": "$200", "category": "Casual", "arrival": "2024-01-01" },
+            { "name": "Casual Abaya 2", "image": "casual_abaya2.jpg", "price": "$220", "category": "Casual", "arrival": "2024-01-15" },
+            { "name": "Evening Abaya 1", "image": "evening_abaya1.jpg", "price": "$300", "category": "Evening", "arrival": "2024-01-10" },
+            { "name": "Evening Abaya 2", "image": "evening_abaya2.jpg", "price": "$350", "category": "Evening", "arrival": "2024-02-01" },
+            { "name": "Party Abaya 1", "image": "party_abaya1.jpg", "price": "$250", "category": "Party", "arrival": "2024-01-20" },
+            { "name": "Party Abaya 2", "image": "party_abaya2.jpg", "price": "$270", "category": "Party", "arrival": "2024-02-05" },
+            { "name": "Workwear Abaya 1", "image": "work_abaya1.jpg", "price": "$180", "category": "Workwear", "arrival": "2024-01-15" },
+            { "name": "Workwear Abaya 2", "image": "work_abaya2.jpg", "price": "$190", "category": "Workwear", "arrival": "2024-02-10" },
+            // Add more products here if needed...
+        ];
+
+        // Display products dynamically
+        function displayProducts(page) {
+            const productGrid = document.getElementById('product-grid');
+            productGrid.innerHTML = '';
+            const startIndex = (page - 1) * productsPerPage;
+            const endIndex = Math.min(products.length, startIndex + productsPerPage);
+            const visibleProducts = products.slice(startIndex, endIndex);
+
+            visibleProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price}</p>
+                    <button onclick="addToCart('${product.name}', '${product.image}')">Add to Cart</button>
+                `;
+                productGrid.appendChild(productCard);
+            });
+        }
+
+        // Add to Cart functionality
+        function addToCart(name, image) {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            cartItems.push({ name, image });
+            alert(`${name} added to cart!`);
+        }
+
+        // Filter products by category
+        function filterProducts() {
+            const category = document.getElementById('filter-category').value;
+            if (category === "all") {
+                displayProducts(currentPage);
+            } else {
+                const filteredProducts = products.filter(product => product.category === category);
+                displayFilteredProducts(filteredProducts);
+            }
+        }
+
+        // Sort products by arrival
+        function sortProducts() {
+            const sortOption = document.getElementById('sort-arrival').value;
+            if (sortOption === "newest") {
+                products.sort((a, b) => new Date(b.arrival) - new Date(a.arrival));
+            } else if (sortOption === "oldest") {
+                products.sort((a, b) => new Date(a.arrival) - new Date(b.arrival));
+            }
+            displayProducts(currentPage);
+        }
+
+        // Display filtered products
+        function displayFilteredProducts(filteredProducts) {
+            const productGrid = document.getElementById('product-grid');
+            productGrid.innerHTML = '';
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price}</p>
+                    <button onclick="addToCart('${product.name}', '${product.image}')">Add to Cart</button>
+                `;
+                productGrid.appendChild(productCard);
+            });
+        }
+
+        // Display cart modal
+        function toggleCart() {
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.style.display = cartModal.style.display === 'block' ? 'none' : 'block';
+            displayCartItems();
+        }
+
+        // Display items in the cart
+        function displayCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = '';
+            cartItems.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `<img src="${item.image}" alt="${item.name}"> <span>${item.name}</span>`;
+                cartItemsContainer.appendChild(itemDiv);
+            });
+        }
+
+        // Pagination functions
+        function nextPage() {
+            if ((currentPage * productsPerPage) < products.length) {
+                currentPage++;
+                displayProducts(currentPage);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayProducts(currentPage);
+            }
+        }
+
+        // Initial display
+        displayProducts(currentPage);
+    </script>
+
+</body>
+</html>
